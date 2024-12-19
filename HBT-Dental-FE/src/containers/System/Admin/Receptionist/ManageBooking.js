@@ -282,19 +282,17 @@ class ManageBooking extends Component {
                                 <>
                                   <button
                                     className="btn btn-primary mx-1"
+                                    style={{ width: '85px', textAlign: 'center' }}
                                     onClick={() => this.handleBtnConfirm(item)}
                                   >
-                                    <FormattedMessage
-                                      id={"manage-patient-user.confirm"}
-                                    />
+                                    <FormattedMessage id={"manage-patient-user.confirm"} />
                                   </button>
                                   <button
                                     className="btn btn-danger mx-1"
+                                    style={{ width: '85px', textAlign: 'center' }}
                                     onClick={() => this.handleBtnCancel(item)}
                                   >
-                                    <FormattedMessage
-                                      id={"manage-patient-user.cancel"}
-                                    />
+                                    <FormattedMessage id={"manage-patient-user.cancel"} />
                                   </button>
                                 </>
                               ) : (

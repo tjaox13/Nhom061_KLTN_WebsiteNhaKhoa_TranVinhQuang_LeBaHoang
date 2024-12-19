@@ -85,7 +85,7 @@ class ManageSpecialty extends Component {
       if (this.props.language == "en") {
         toast.success("Add new specialty succeeds!");
       } else {
-        toast.success("Thêm chuyên khoa thành công!");
+        toast.success("Thêm dịch vụ thành công!");
       }
 
       this.setState({

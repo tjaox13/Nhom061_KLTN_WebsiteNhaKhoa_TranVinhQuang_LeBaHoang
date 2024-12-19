@@ -17,10 +17,12 @@ class Specialty extends Component {
   }
 
   async componentDidMount() {
-    let res = await getAllSpecialty({limit:4});
+    let res = await getAllSpecialty(); // Lấy tất cả dữ liệu từ API
     if (res && res.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data ? res.data : [],
+        fullData: res.data ? res.data : [],
+        dataSpecialty: res.data.slice(0, 4), // Hiển thị 4 phần tử đầu tiên
+        offset: 4,
       });
     }
   }
@@ -35,15 +37,23 @@ class Specialty extends Component {
     this.props.history.push(`/list-specialty`);
   };
 
-  handleLoadMore=async () => {
-    let total=this.state.dataSpecialty.length+4;
-    let res = await getAllSpecialty({limit:total});
-    if (res && res.errCode === 0) {
-      this.setState({
-        dataSpecialty: res.data ? res.data : [],
-      });
+  handleLoadMore = () => {
+    let { fullData, dataSpecialty, offset } = this.state;
+  
+    // Nếu đã hiển thị đủ 12 specialty, dừng việc load thêm
+    if (dataSpecialty.length >= 12) {
+      return;
     }
-  }
+  
+    // Lấy thêm 4 phần tử tiếp theo từ danh sách đầy đủ
+    let newData = fullData.slice(offset, offset + 4);
+  
+    // Cập nhật state
+    this.setState({
+      dataSpecialty: [...dataSpecialty, ...newData],
+      offset: offset + 4,
+    });
+  };
 
 
   render() {

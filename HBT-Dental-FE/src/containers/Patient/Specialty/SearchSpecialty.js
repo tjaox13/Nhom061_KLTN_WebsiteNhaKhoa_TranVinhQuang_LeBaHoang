@@ -42,10 +42,10 @@ class SearchSpecialty extends Component {
                     <div className="search-specialty-header">
                         <Link to={'/home'}><div className="icon"><i className="fas fa-long-arrow-alt-left"></i></div></Link>
 
-                        <div className="search-specialty-header-name">Chuyên khoa</div>
+                        <div className="search-specialty-header-name">Dịch Vụ</div>
                     </div>
                     <div className="search-header">
-                        <input onChange={(event) => this.handleOnChangeInput(event)} type="text" placeholder="Tìm kiếm chuyên khoa" className="search-input" />
+                        <input onChange={(event) => this.handleOnChangeInput(event)} type="text" placeholder="Tìm kiếm dịch vụ" className="search-input" />
                     </div>
                 </div>
                 <div className="search-specialty-body">

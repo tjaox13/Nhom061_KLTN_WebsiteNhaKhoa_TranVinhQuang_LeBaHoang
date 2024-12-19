@@ -107,7 +107,7 @@ const HomeMenuSearchSpecialty = (props) => {
       className={classes.menuSpecialty}
     >
       <MenuItem key={"specialty"} className={classes.titleHeader}>
-        Chuyên khoa
+        Dịch Vụ
       </MenuItem>
 
       {options.map((option) => (

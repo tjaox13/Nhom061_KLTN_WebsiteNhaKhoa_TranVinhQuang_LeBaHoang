@@ -99,13 +99,16 @@ class BookingModal extends Component {
           label: `${doc.lastName} ${doc.firstName}`,
           image: this.convertBufferToBase64(doc.image),
         }));
-        const services = specialtiesRes.data.map((specialty) => ({
+  
+        // Lấy 12 phần tử đầu tiên của specialties
+        const services = specialtiesRes.data.slice(0, 12).map((specialty) => ({
           value: specialty.id,
           label: specialty.name,
           image: specialty.image, // Thêm hình ảnh
         }));
-
+  
         console.log("Doctors:", doctors); // Kiểm tra dữ liệu bác sĩ
+        console.log("Services:", services); // Kiểm tra dữ liệu dịch vụ
         this.setState({ doctors, services });
       } else {
         toast.error("Không thể tải dữ liệu!");
@@ -116,20 +119,95 @@ class BookingModal extends Component {
     }
   };
 
-  handleConfirmBooking = async () => {
-    const {
-      patientName,
-      lastName,
-      phoneNumber,
-      email,
-      reason,
-      address, // Đảm bảo lấy đúng từ state
-      selectedGender, // Đảm bảo lấy đúng từ state
-      selectedDate,
-      selectedTime,
-      selectedDoctor,
-      selectedService,
-    } = this.state;
+  validateInput = () => {
+      const { patientName, lastName, email, phoneNumber, selectedDate } = this.state;
+    
+      // Họ và Tên: Không chứa số hoặc ký tự đặc biệt
+      const nameRegex = /^[a-zA-ZÀ-ỹ\s]+$/;
+    
+      // Email: Định dạng hợp lệ
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+      // Số Điện Thoại Việt Nam: Bắt đầu bằng 0 và gồm 10 chữ số
+      const phoneRegex = /^0\d{9}$/;
+    
+      // Ngày Đặt Lịch: Sau ngày hiện tại
+      const today = new Date();
+      const selectedDateTime = new Date(selectedDate).getTime();
+    
+      // Kiểm tra trường trống
+      if (!lastName.trim()) {
+        toast.error("Họ không được để trống!");
+        return false;
+      }
+    
+      if (!patientName.trim()) {
+        toast.error("Tên không được để trống!");
+        return false;
+      }
+    
+      if (!email.trim()) {
+        toast.error("Email không được để trống!");
+        return false;
+      }
+    
+      if (!phoneNumber.trim()) {
+        toast.error("Số điện thoại không được để trống!");
+        return false;
+      }
+    
+      if (!selectedDate) {
+        toast.error("Ngày đặt lịch không được để trống!");
+        return false;
+      }
+    
+      // Kiểm tra định dạng
+      if (!lastName.match(nameRegex)) {
+        toast.error("Họ không được chứa số hoặc ký tự đặc biệt!");
+        return false;
+      }
+    
+      if (!patientName.match(nameRegex)) {
+        toast.error("Tên không được chứa số hoặc ký tự đặc biệt!");
+        return false;
+      }
+    
+      if (!email.match(emailRegex)) {
+        toast.error("Email không hợp lệ!");
+        return false;
+      }
+    
+      if (!phoneNumber.match(phoneRegex)) {
+        toast.error("Số điện thoại không hợp lệ! Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số.");
+        return false;
+      }
+    
+      if (selectedDateTime <= today.getTime()) {
+        toast.error("Ngày đặt lịch phải sau ngày hiện tại!");
+        return false;
+      }
+    
+      return true;
+    };
+  
+    handleConfirmBooking = async () => {
+      if (!this.validateInput()) {
+        return; // Dừng lại nếu dữ liệu không hợp lệ
+      }
+    
+      const {
+        patientName,
+        lastName,
+        phoneNumber,
+        email,
+        reason,
+        address,
+        selectedGender,
+        selectedDate,
+        selectedTime,
+        selectedDoctor,
+        selectedService,
+      } = this.state;
 
     if (
       !patientName ||

@@ -23,8 +23,13 @@ class Service extends Component {
   async componentDidMount() {
     let res = await getAllSpecialty({ limit: 1200 });
     if (res && res.errCode === 0) {
+      // Sắp xếp theo id và lấy 12 mục đầu tiên
+      const sortedSpecialty = res.data
+        ? res.data.sort((a, b) => a.id - b.id).slice(0, 12)
+        : [];
+
       this.setState({
-        dataSpecialty: res.data ? res.data : [],
+        dataSpecialty: sortedSpecialty,
       });
     }
   }

@@ -90,7 +90,7 @@
     "outstanding-doctor": "Nha sĩ nổi bật tuần qua",
     "outstanding-medical-facility": "Phòng khám nha khoa nổi bật",
     "more-infor": "Xem thêm",
-    "specialty-popular": "Chuyên khoa nha phổ biến",
+    "specialty-popular": "Dịch vụ phổ biến",
     "media-talk-about-huynh-minh-duc": "Truyền thông",
     "media-talk-about-huynh-minh-duc-content": "Với nhiều năm kinh nghiệm, chúng tôi cam kết mang lại chất lượng dịch vụ nha khoa cao cấp và chăm sóc sức khỏe răng miệng toàn diện.",
     "footer-infor": "Huỳnh Võ Tuấn Linh. Để biết thêm thông tin, vui lòng truy cập facebook của tôi",
@@ -255,7 +255,7 @@
   },
   "medical-history": {
     "title": "Lịch sử khám nha khoa",
-    "filters": "Bộ lọc",
+    "filters": "Tìm theo",
     "from-date": "Từ ngày",
     "to-date": "Đến ngày",
     "apply": "Áp dụng",

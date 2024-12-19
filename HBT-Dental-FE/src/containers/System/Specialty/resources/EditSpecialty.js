@@ -123,7 +123,7 @@ class EditSpecialty extends Component {
       const successMessage =
         language === "en"
           ? "Update specialty succeed!"
-          : "Cập nhật chuyên khoa thành công!";
+          : "Cập nhật dịch vụ thành công!";
       toast.success(successMessage);
       await this.getSpecialtyDetail();
     } else {

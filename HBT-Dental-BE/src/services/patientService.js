@@ -90,7 +90,7 @@ let postBookAppointment = (data) => {
         } else {
           // Hash password
           let hashPasswordFromBcrypt = await hashUserPassword(
-            data.password || "root"
+            data.password || "123456aA@"
           );
 
           // Create new user

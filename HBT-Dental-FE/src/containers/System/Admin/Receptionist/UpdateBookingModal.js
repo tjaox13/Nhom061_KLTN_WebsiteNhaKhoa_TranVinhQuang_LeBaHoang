@@ -35,7 +35,7 @@ class UpdateBookingModal extends Component {
 
   async componentDidMount() {
     const { bookingData } = this.props;
-
+  
     try {
       const times = [
         { label: "08:00 - 09:00", value: "T1" },
@@ -47,24 +47,26 @@ class UpdateBookingModal extends Component {
         { label: "15:00 - 16:00", value: "T7" },
         { label: "16:00 - 17:00", value: "T8" },
       ];
-
+  
       const [doctorsRes, servicesRes] = await Promise.all([
         getAllDoctors(),
         getAllSpecialty(),
       ]);
-
+  
       if (doctorsRes?.errCode === 0 && servicesRes?.errCode === 0) {
         const doctors = doctorsRes.data.map((doc) => ({
           value: doc.id,
           label: `${doc.lastName} ${doc.firstName}`,
         }));
-        const services = servicesRes.data.map((spec) => ({
-          value: spec.id,
-          label: spec.name,
-        }));
-
+        const services = servicesRes.data
+          .slice(0, 12) // Chỉ lấy 12 mục đầu tiên
+          .map((spec) => ({
+            value: spec.id,
+            label: spec.name,
+          }));
+  
         this.setState({ times, doctors, services });
-
+  
         if (bookingData) {
           const timeOption =
             times.find((time) => time.value === bookingData.timeType) || null;
@@ -75,7 +77,7 @@ class UpdateBookingModal extends Component {
           const doctorOption =
             doctors.find((doctor) => doctor.value === bookingData.doctorId) ||
             null;
-
+  
           this.setState({
             bookingId: bookingData.id,
             patientName: bookingData.patientName || "",

@@ -113,7 +113,7 @@ const ListSpecialty = () => {
               <KeyboardBackspaceIcon className={classes.menuIcon} />
             </IconButton>
             <Typography variant="h5" className={classes.menuTitle}>
-                {language=="en" ? "Specialty" : "Chuyên khoa"}
+                {language=="en" ? "Specialty" : "Dịch Vụ"}
             </Typography>
           </Toolbar>
         </AppBar>

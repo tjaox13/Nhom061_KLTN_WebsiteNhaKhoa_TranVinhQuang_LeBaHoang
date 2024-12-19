@@ -242,7 +242,7 @@ class EditProfileModal extends Component {
                     </div>
 
 
-                    <div className="col-6 form-group">
+                    {/* <div className="col-6 form-group">
                         <label>
                         <FormattedMessage id="manage-user.first-name" />
                         </label>
@@ -266,7 +266,7 @@ class EditProfileModal extends Component {
                             this.handleOnChangeInput(event, "lastName")
                             }
                         />
-                    </div>
+                    </div> */}
 
                     <div className="col-6 form-group">
                         <label>

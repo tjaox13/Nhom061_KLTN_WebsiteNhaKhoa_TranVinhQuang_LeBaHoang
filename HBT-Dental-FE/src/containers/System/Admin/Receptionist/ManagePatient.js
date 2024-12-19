@@ -187,6 +187,7 @@ class ManagePatient extends Component {
                             <td>
                               <button
                                 className="btn btn-warning"
+                                style={{ width: '85px', textAlign: 'center' }}
                                 onClick={() => this.handleUpdatePatient(item)}
                               >
                                 <FormattedMessage
@@ -196,6 +197,7 @@ class ManagePatient extends Component {
                               {this.props.user.roleId !== "R2" && (
                                 <button
                                   className="btn btn-primary"
+                                  style={{ width: '85px', textAlign: 'center' }}
                                   onClick={() => this.toggleBookingModal(item)}
                                 >
                                   Đặt lịch

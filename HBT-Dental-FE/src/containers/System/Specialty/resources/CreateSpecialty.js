@@ -59,7 +59,7 @@ class CreateSpecialty extends Component {
         const message =
           language === "en"
             ? "Missing required parameters!"
-            : "Thiếu thông tin chuyên khoa!";
+            : "Thiếu thông tin chuyên dịch vụ!";
         toast.error(message);
         return false;
       }
@@ -94,7 +94,7 @@ class CreateSpecialty extends Component {
       const successMessage =
         language === "en"
           ? "Add new specialty successfully!"
-          : "Thêm chuyên khoa thành công!";
+          : "Thêm dịch vụ thành công!";
       toast.success(successMessage);
 
       this.setState({

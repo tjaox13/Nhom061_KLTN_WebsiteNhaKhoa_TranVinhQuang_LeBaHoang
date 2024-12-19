@@ -40,39 +40,24 @@ let createSpecialty = (data) => {
 let getAllSpecialty = (dataInput) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // Tạo đối tượng tùy chọn cho truy vấn
-      let options = {
-        where: {
-          id: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
-        },
-      };
+      let options = {};
 
-      // Nếu có giới hạn limit, thêm vào tùy chọn truy vấn
-      if (dataInput && dataInput.limit) {
-        options.limit = parseInt(dataInput.limit);
-      }
+      if (dataInput.limit) options.limit = parseInt(dataInput.limit);
 
-      // Truy vấn cơ sở dữ liệu
       let data = await db.Specialty.findAll(options);
 
-      // Xử lý chuyển đổi ảnh từ base64 sang binary
       if (data && data.length > 0) {
         data.map((item) => {
-          if (item.image) {
-            item.image = new Buffer(item.image, "base64").toString("binary");
-          }
+          item.image = new Buffer(item.image, "base64").toString("binary");
           return item;
         });
       }
-
-      // Trả về kết quả
       resolve({
         errCode: 0,
         errMessage: "Ok!",
         data,
       });
     } catch (e) {
-      // Xử lý lỗi
       reject(e);
     }
   });
